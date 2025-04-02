@@ -1,24 +1,24 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import AboutUs from "./pages/AboutUs";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Register from "./pages/Register";
+import Navbar from "./components/Navbar";
+import Items from "./pages/Items";
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <Header />
+    <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/items" element={<Items />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<AboutUs />} />
+        <Route path="/register" element={<Register />} />
+        
       </Routes>
-      <Footer />
-    </Router>
+    </>
   );
-};
+}
 
 export default App;
