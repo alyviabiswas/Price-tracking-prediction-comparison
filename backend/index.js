@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js'; // Import DB connection
 import authRoutes from './routes/auth.routes.js'; // Import auth routes
+import cors from 'cors';
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(express.json()); // To parse JSON
+
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Routes
 app.use('/api/auth', authRoutes); // Registers `/api/auth/register`
