@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -13,9 +14,22 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      // We'll make this optional since OAuth users won't have a password
+      required: function() {
+        // Only required if there's no OAuth provider
+        return !this.googleId && !this.facebookId;
+      },
       minlength: 6,
-    }
+    },
+    googleId: {
+      type: String,
+    },
+    facebookId: {
+      type: String,
+    },
+    profilePicture: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

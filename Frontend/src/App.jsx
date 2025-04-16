@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Items from "./pages/Items";
+import OAuthSuccess from "./pages/OAuthSuccess";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/items" element={<Items />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/oauth-success" element={<OAuthSuccess />} />
         
       </Routes>
     </>
