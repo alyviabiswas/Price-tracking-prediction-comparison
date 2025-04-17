@@ -7,7 +7,7 @@ import React from "react";
        <div
          className="h-[480px] flex items-center justify-center bg-cover bg-center"
          style={{
-           backgroundImage: `url('https://plus.unsplash.com/premium_photo-1683984171269-04c84ee23234?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzd8fG9ubGluZSUyMHNob3BwaW5nfGVufDB8MHwwfHx8MA%3D%3D')`,
+           backgroundImage: `url('https://images.pexels.com/photos/7947663/pexels-photo-7947663.jpeg?auto=compress&cs=tinysrgb&w=600')`,
          }}
        >
  
@@ -25,7 +25,7 @@ import React from "react";
              <div className="space-y-6">
                <a
                  href="/items"
-                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
+                 className="inline-block bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition duration-300"
                >
                  Explore Products
                </a>
@@ -34,9 +34,9 @@ import React from "react";
                  <input
                    type="text"
                    placeholder="Search item by name..."
-                   className="px-4 py-2 w-72 rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-blue-400"
+                   className="px-4 py-2 w-72 bg-black text-gray-300 rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-yellow-300"
                  />
-                 <button className="bg-green-600 text-white px-5 py-2 rounded-md hover:bg-green-700 transition">
+                 <button className="bg-yellow-500 text-black px-5 py-2 rounded-md hover:bg-yellow-600 transition">
                    Search
                  </button>
                </div>
@@ -45,9 +45,9 @@ import React from "react";
                  <input
                    type="text"
                    placeholder="Paste product link..."
-                   className="px-4 py-2 w-72 rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-purple-400"
+                   className="px-4 py-2 w-72 bg-black text-gray-300 rounded-md border border-black focus:outline-none focus:ring-2 focus:ring-yellow-300"
                  />
-                 <button className="bg-purple-600 text-white px-5 py-2 rounded-md hover:bg-purple-700 transition">
+                 <button className="bg-yellow-500 text-black px-5 py-2 rounded-md hover:bg-yellow-600 transition">
                    Search
                  </button>
                </div>
