@@ -1,3 +1,32 @@
+// import React from "react";
+// import { Routes, Route } from "react-router-dom";
+// import Home from "./pages/Home";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
+// import Navbar from "./components/Navbar";
+// import Items from "./pages/Items";
+// import OAuthSuccess from "./pages/OAuthSuccess";
+
+// function App() {
+//   return (
+//     <>
+//       <Navbar />
+//       <Routes>
+//         <Route path="/" element={<Home />} />
+//         <Route path="/items" element={<Items />} />
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/register" element={<Register />} />
+//         <Route path="/oauth-success" element={<OAuthSuccess />} />
+        
+//       </Routes>
+//     </>
+//   );
+// }
+
+// export default App;
+
+
+// /Frontend/src/App.jsx
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -6,6 +35,7 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Items from "./pages/Items";
 import OAuthSuccess from "./pages/OAuthSuccess";
+import ProtectedRoute from "./components/ProtectedRoute"; // ⬅️ NEW IMPORT
 
 function App() {
   return (
@@ -13,11 +43,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/items" element={<Items />} />
+        <Route path="/items" element={
+          <ProtectedRoute>
+            <Items />
+          </ProtectedRoute>
+        } />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
-        
       </Routes>
     </>
   );
