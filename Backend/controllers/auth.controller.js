@@ -30,7 +30,7 @@ export const register = async (req, res) => {
   }
 };
 
-// Login Controller
+// Updated Login Controller
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -47,7 +47,9 @@ export const login = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    res.status(200).json({ token });
+    const { password: _, ...userWithoutPassword } = user.toObject();
+
+    res.status(200).json({ token, user: userWithoutPassword });
 
   } catch (error) {
     console.error('Login Error:', error);
@@ -60,16 +62,13 @@ export const oauthCallback = async (req, res) => {
   try {
     const user = req.user;
 
-    // Generate JWT token
     const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
 
-    // Redirect to frontend with token
     res.redirect(`${process.env.FRONTEND_URL}/oauth-success?token=${token}`);
-
   } catch (error) {
     console.error('OAuth callback error:', error);
     res.status(500).json({ message: 'Authentication failed' });
@@ -100,3 +99,4 @@ export const getCurrentUser = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
