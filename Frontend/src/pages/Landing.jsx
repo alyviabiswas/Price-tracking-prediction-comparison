@@ -2,6 +2,16 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from "../components/button.jsx";
+import alyviaImg from '../assets/Alyvia.jpg';
+import firojImg from '../assets/Firoj.jpg';
+import dipakImg from '../assets/Dipak.jpg';
+import rupakImg from '../assets/Rupak.jpg';
+import sayanImg from '../assets/Sayan.jpg';
+// import bgImage from '../assets/bg1.png';
+// import bgImage from '../assets/bg2.png';
+import bgImage from '../assets/bg3.png';
+// import bgImage from '../assets/bg4.png';
+
 
 // Define animation variants
 // const slideInLeft = {
@@ -66,15 +76,15 @@ const Landing = () => {
       <section className="relative h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex items-center">
         <div className="absolute inset-0">
           <img
-            src="/lovable-uploads/38526eaf-5019-40e3-b438-1b0315d58a8a.png"
+            src={bgImage}
             alt="Background"
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover opacity-100"
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-5xl font-bold mb-4">WELCOME TO<br />SMART SPENDING</h2>
-            <p className="text-gray-600 mb-8">Spot price patterns here, like a shopping Sherlock.</p>
+            <h2 className="text-5xl text-zinc-400 font-bold mb-8">WELCOME TO<br />SMART SPENDING</h2>
+            <p className="text-zinc-400 text-bold text-xl mb-8">Spot price patterns here, like a shopping Sherlock.</p>
             <a
               href="/items"
               className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
@@ -87,8 +97,8 @@ const Landing = () => {
 
       {/* Features Section */}
       <section id="features" className="py-20">
-        <div className="container bg-blue-500 mx-auto px-4 ">
-          <h3 className="text-2xl font-bold text-center mb-16">FEATURES</h3>
+        <div className="container bg-blue-500 mx-auto px-4 py-16">
+          <h3 className="text-3xl font-bold text-center mb-16">FEATURES</h3>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               {
@@ -221,17 +231,21 @@ const Landing = () => {
           The minds behind the mission – passionate, skilled, and ready to make a difference.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-8 px-4">
+        <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 px-4">
           {[
-            { name: "Alyvia Biswas", role: "Developer", img: "https://i.pravatar.cc/150?img=1" },
-            { name: "Firoj Sk", role: "Developer", img: "https://i.pravatar.cc/150?img=2" },
-            { name: "Dipak Das", role: "AI & ML", img: "https://i.pravatar.cc/150?img=3" },
-            { name: "Rupak Das", role: "AI & ML", img: "https://i.pravatar.cc/150?img=4" },
-            { name: "Sayan Ghosh", role: "Database Manager", img: "https://i.pravatar.cc/150?img=4" },
+            { name: "Alyvia Biswas", role: "Developer", img: alyviaImg },
+            { name: "Firoj Sk", role: "Developer", img: firojImg },
+            { name: "Dipak Das", role: "AI & ML", img: dipakImg },
+            { name: "Rupak Das", role: "AI & ML", img: rupakImg },
+            { name: "Sayan Ghosh", role: "Database Manager", img: sayanImg },
           ].map((member, i) => (
-            <div key={i} className="flex flex-col items-center max-w-[150px]">
-              <img src={member.img} alt={member.name} className="rounded-md shadow-md" />
-              <h4 className="mt-2 font-semibold">{member.name}</h4>
+            <div key={i} className="flex flex-col items-center max-w-[150px] text-center">
+              <img
+                src={member.img}
+                alt={member.name}
+                className="w-32 h-32 object-cover rounded-full shadow-md"
+              />
+              <h4 className="mt-3 font-semibold text-base">{member.name}</h4>
               <p className="text-sm text-gray-500">{member.role}</p>
             </div>
           ))}
