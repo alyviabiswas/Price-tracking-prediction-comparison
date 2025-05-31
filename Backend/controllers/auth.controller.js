@@ -1,4 +1,5 @@
 
+
 import User from '../models/user.model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -22,13 +23,26 @@ export const register = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
+
+    // Generate JWT
+    const token = jwt.sign(
+      { id: newUser._id, email: newUser.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // Remove password from user before sending
+    const { password: _, ...userWithoutPassword } = newUser.toObject();
+
+    // ✅ Send expected response
+    res.status(201).json({ token, user: userWithoutPassword });
 
   } catch (error) {
     console.error('Register Error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 // Updated Login Controller
 export const login = async (req, res) => {
@@ -99,4 +113,3 @@ export const getCurrentUser = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-

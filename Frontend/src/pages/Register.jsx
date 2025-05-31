@@ -1,8 +1,7 @@
 
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaGoogle, FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -38,9 +37,13 @@ const Register = () => {
       if (!response.ok) {
         setApiError(result.message || 'Registration failed. Please try again.');
       } else {
-        console.log('Registration successful:', result);
-        // Navigate to login after successful registration
-        navigate('/');
+        if (result.token && result.user) {
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("user", JSON.stringify(result.user));
+          navigate("/home");
+        } else {
+          setApiError("Unexpected server response. Try logging in.");
+        }
       }
     } catch (error) {
       console.error('Registration error:', error);
@@ -48,6 +51,11 @@ const Register = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Handle OAuth login redirects
+  const handleOAuthLogin = (provider) => {
+    window.location.href = `http://localhost:8000/api/auth/${provider}`;
   };
 
   return (
@@ -142,6 +150,33 @@ const Register = () => {
             )}
           </button>
         </form>
+
+        <div className="my-6 flex items-center justify-between">
+          <hr className="w-full border-gray-300" />
+          <span className="px-4 text-gray-500 text-sm">OR</span>
+          <hr className="w-full border-gray-300" />
+        </div>
+        
+        {/* OAuth Buttons */}
+        <div className="space-y-3">
+          <button
+            type="button" 
+            onClick={() => handleOAuthLogin('google')}
+            className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-lg transition duration-300 hover:bg-gray-50 flex items-center justify-center shadow-sm"
+          >
+            <FaGoogle className="text-red-500 mr-2" />
+            Continue with Google
+          </button>
+          
+          <button
+            type="button"
+            onClick={() => handleOAuthLogin('facebook')}
+            className="w-full bg-blue-600 text-white py-3 rounded-lg transition duration-300 hover:bg-blue-700 flex items-center justify-center shadow-sm"
+          >
+            <FaFacebook className="mr-2" />
+            Continue with Facebook
+          </button>
+        </div>
 
         <p className="text-center text-gray-600 mt-6">
           Already have an account?{" "}

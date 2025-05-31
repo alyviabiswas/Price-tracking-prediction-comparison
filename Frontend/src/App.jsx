@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -16,17 +17,18 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        } />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/items" element={<Items />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/comparison" element={
-            <ComparisonPage />
-        } />
+        <Route path="/comparison" element={<ComparisonPage />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
       </Routes>
     </>
@@ -34,5 +36,4 @@ function App() {
 }
 
 export default App;
-
 
